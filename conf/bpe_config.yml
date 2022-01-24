@@ -1,0 +1,6 @@
+model_params:
+  max_sentencepiece_length: 256 # maximum number characters in a single token
+  vocab_size: 4096
+  hard_vocab_limit: "False"
+  character_coverage: 1
+  model_type: 'bpe' #'bpe' or 'unigram'
