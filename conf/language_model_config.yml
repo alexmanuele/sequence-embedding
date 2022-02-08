@@ -1,0 +1,18 @@
+model_params:
+  vocab_size: 4098 #BPE vocab size + 2, for BOS/EOS tokens
+  max_positional_embeddings: 258
+  num_attention_layers: 12
+  num_hidden_layers: 6
+  type_vocab_size: 1
+
+training_params:
+  overwrite_output_dir: True
+  num_train_epochs: 20
+  per_gpu_train_batch_size: 64
+  save_steps: 10_000
+  save_total_limit: 2
+  prediction_loss_only: True
+
+dataset_params:
+  dataset_block_size: 128
+  mlm_probability: 0.15

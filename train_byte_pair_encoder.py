@@ -27,5 +27,14 @@ if __name__ == '__main__':
     # def parse_config(config):
     #    pass
     ############################################################
-    bpe.train_model(args.input, args.config, args.outdir)
-    
+    with open(args.config, 'r') as f:
+        config = yaml.safe_load(f)
+
+    bpe.train_model(args.input, config, args.outdir)
+    #TODO load the newly trained model and save it as a HuggingFace Tokenizer
+    tokenizer = ByteLevelBPETokenizer('{}/vocab.json'.format(args.outdir), '{}/merges.txt'.format(args.outdir))
+    tokenizer._tokenizer.post_processor = BertProcessing(
+        ("</s>", tokenize.token_to_id("</s>")),
+        ("<s>", tokenizer.token_to_id("<s>")),
+    )
+    tokenizer.enable_truncation(max_length = config['model_params']['max_positional_embeddings'] - 2)
