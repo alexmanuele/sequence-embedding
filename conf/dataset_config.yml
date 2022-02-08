@@ -1,0 +1,2 @@
+token_set: 'dna_strict' #['dna_strict', 'dna_iupac', 'rna_strict', 'aa']
+rna_treatment: 'replace' #['replace', 'ignore']. Defaults to "replace"
